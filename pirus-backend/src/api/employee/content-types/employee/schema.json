@@ -1,0 +1,169 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employees",
+  "info": {
+    "singularName": "employee",
+    "pluralName": "employees",
+    "displayName": "Employee",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "employeeIdentifier": {
+      "type": "customField",
+      "customField": "plugin::strapi-advanced-uuid.uuid"
+    },
+    "firstName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 64,
+      "minLength": 2
+    },
+    "middleName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 64,
+      "minLength": 2
+    },
+    "userName": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 3
+    },
+    "dateOfBirth": {
+      "type": "date",
+      "required": true
+    },
+    "bloodGroup": {
+      "type": "enumeration",
+      "enum": [
+        "A-Positive",
+        "A-Negative",
+        "B-Positive",
+        "B-Negative",
+        "AB-Positive",
+        "AB-Negative",
+        "O-Positive",
+        "O-Negative"
+      ],
+      "required": true
+    },
+    "maritalStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Married",
+        "Unmarried"
+      ],
+      "required": true
+    },
+    "nationality": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
+    },
+    "existingMedicalCondition": {
+      "type": "string",
+      "required": false
+    },
+    "personalIdentificationInfo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::personal-identification-info.personal-identification-info",
+      "inversedBy": "employee"
+    },
+    "primaryEmail": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "temp_address_detail": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address-detail.address-detail",
+      "inversedBy": "temp_employee"
+    },
+    "perma_address_detail": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address-detail.address-detail",
+      "inversedBy": "perma_employee"
+    },
+    "yearly_leave_details": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::yearly-leave-detail.yearly-leave-detail",
+      "mappedBy": "employee"
+    },
+    "profileImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female",
+        "Other",
+        "Prefer Not To Say"
+      ]
+    },
+    "performanceAppraisals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::performance-appraisal.performance-appraisal",
+      "mappedBy": "employee"
+    },
+    "employeeLunchDetails": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::employee-lunch-detail.employee-lunch-detail",
+      "mappedBy": "employee"
+    },
+    "bankDetails": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bank-detail.bank-detail",
+      "mappedBy": "employee"
+    },
+    "educationalQualifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::educational-qualification.educational-qualification",
+      "mappedBy": "employee"
+    },
+    "attendanceInfos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::attendance-info.attendance-info",
+      "mappedBy": "attendingEmployeeId"
+    },
+    "projectTasks": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project-task.project-task",
+      "inversedBy": "teamMembers"
+    },
+    "receipts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::receipt.receipt",
+      "mappedBy": "employee"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "employee"
+    }
+  }
+}

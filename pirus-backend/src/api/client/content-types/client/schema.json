@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "client",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "companyName": {
+      "type": "string"
+    },
+    "clientContactNumber": {
+      "type": "string"
+    },
+    "clientEmail": {
+      "type": "email"
+    },
+    "clientAddress": {
+      "type": "string"
+    },
+    "lead": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::lead-company.lead-company",
+      "inversedBy": "client"
+    },
+    "clientContactPersonName": {
+      "type": "string"
+    },
+    "clientContactPersonNumber": {
+      "type": "string"
+    },
+    "clientContactPersonEmail": {
+      "type": "email"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "client"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "contractDocument": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["files", "images"]
+    }
+  }
+}

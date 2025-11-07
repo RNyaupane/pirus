@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lunches",
+  "info": {
+    "singularName": "lunch",
+    "pluralName": "lunches",
+    "displayName": "Lunch",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "lunchDate": {
+      "type": "date"
+    },
+    "employeeLunchDetail": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::employee-lunch-detail.employee-lunch-detail",
+      "inversedBy": "lunches"
+    },
+    "lunch": {
+      "type": "text"
+    },
+    "hadLunch": {
+      "type": "boolean"
+    }
+  }
+}

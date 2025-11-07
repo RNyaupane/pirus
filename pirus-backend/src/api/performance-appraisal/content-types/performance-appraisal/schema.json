@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "performance_appraisals",
+  "info": {
+    "singularName": "performance-appraisal",
+    "pluralName": "performance-appraisals",
+    "displayName": "PerformanceAppraisal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "performanceAppraisalDate": {
+      "type": "date",
+      "required": true
+    },
+    "performanceAppraisalDetails": {
+      "type": "richtext",
+      "required": true
+    },
+    "performanceAppraisalSheet": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "lineManagerFeedback": {
+      "type": "richtext"
+    },
+    "hrFeedback": {
+      "type": "richtext"
+    },
+    "hrRep": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::employee.employee"
+    },
+    "appraisalType": {
+      "type": "enumeration",
+      "enum": [
+        "Annual Appraisal",
+        "Quarterly Appraisal",
+        "Record of Conversation",
+        "Exit Interview"
+      ],
+      "default": "Quarterly Appraisal",
+      "required": true
+    },
+    "employee": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::employee.employee",
+      "inversedBy": "performanceAppraisals"
+    },
+    "lineManager": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::employee.employee"
+    }
+  }
+}
